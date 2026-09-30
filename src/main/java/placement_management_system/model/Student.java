@@ -1,6 +1,8 @@
 package placement_management_system.model;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "students")
@@ -12,7 +14,9 @@ public class Student {
 
     private String name;
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
     private String branch;
     private Double cgpa;
     private String skills;

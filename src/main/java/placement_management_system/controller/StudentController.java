@@ -1,4 +1,5 @@
 package placement_management_system.controller;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import placement_management_system.model.Student;
 import placement_management_system.repository.StudentRepository;
@@ -14,6 +15,8 @@ public class StudentController {
 
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // Get all students
     @GetMapping
@@ -30,6 +33,7 @@ public class StudentController {
     // Add a new student
     @PostMapping
     public Student addStudent(@RequestBody Student student) {
+        student.setPassword(passwordEncoder.encode(student.getPassword()));
         return studentRepository.save(student);
     }
 
